@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78AE0B1D29E0F8060029260B /* XCGLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE0B1C29E0F8060029260B /* XCGLogger */; };
+		78AE0B2029E0F8200029260B /* MailCore2 in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE0B1F29E0F8200029260B /* MailCore2 */; };
 		E24441E1263B0996006953C4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24441DF263B0996006953C4 /* SWRevealViewController.m */; };
 		E24441E6263B2C96006953C4 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24441E5263B2C96006953C4 /* ChatVC.swift */; };
 		E24441E8263B2CB1006953C4 /* ChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24441E7263B2CB1006953C4 /* ChannelVC.swift */; };
@@ -43,6 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78AE0B1D29E0F8060029260B /* XCGLogger in Frameworks */,
+				78AE0B2029E0F8200029260B /* MailCore2 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +147,8 @@
 			);
 			name = SynthMail;
 			packageProductDependencies = (
+				78AE0B1C29E0F8060029260B /* XCGLogger */,
+				78AE0B1F29E0F8200029260B /* MailCore2 */,
 			);
 			productName = Smack;
 			productReference = E2C2A89D263AEF74007695C7 /* SynthMail.app */;
@@ -156,7 +162,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1170;
 				LastUpgradeCheck = 1170;
-				ORGANIZATIONNAME = robot;
+				ORGANIZATIONNAME = RecompileMe;
 				TargetAttributes = {
 					E2C2A89C263AEF74007695C7 = {
 						CreatedOnToolsVersion = 11.7;
@@ -174,6 +180,8 @@
 			);
 			mainGroup = E2C2A894263AEF74007695C7;
 			packageReferences = (
+				78AE0B1B29E0F8060029260B /* XCRemoteSwiftPackageReference "XCGLogger" */,
+				78AE0B1E29E0F8200029260B /* XCRemoteSwiftPackageReference "mailcore2" */,
 			);
 			productRefGroup = E2C2A89E263AEF74007695C7 /* Products */;
 			projectDirPath = "";
@@ -414,6 +422,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		78AE0B1B29E0F8060029260B /* XCRemoteSwiftPackageReference "XCGLogger" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DaveWoodCom/XCGLogger.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.1;
+			};
+		};
+		78AE0B1E29E0F8200029260B /* XCRemoteSwiftPackageReference "mailcore2" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MailCore/mailcore2";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		78AE0B1C29E0F8060029260B /* XCGLogger */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78AE0B1B29E0F8060029260B /* XCRemoteSwiftPackageReference "XCGLogger" */;
+			productName = XCGLogger;
+		};
+		78AE0B1F29E0F8200029260B /* MailCore2 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78AE0B1E29E0F8200029260B /* XCRemoteSwiftPackageReference "mailcore2" */;
+			productName = MailCore2;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E2C2A895263AEF74007695C7 /* Project object */;
 }

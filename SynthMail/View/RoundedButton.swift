@@ -1,10 +1,7 @@
-//
-//  RoundedButton.swift
-//  Smack
-//
-//  Created by robot on 6/13/21.
-//  Copyright © 2021 robot. All rights reserved.
-//
+/*
+ * Copyright (C) 2023 Recompile.me.
+ * All rights reserved.
+ */
 
 import UIKit
 
