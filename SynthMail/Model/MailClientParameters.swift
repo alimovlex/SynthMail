@@ -9,7 +9,7 @@ import MailCore
 class MailClientParameters {
     let smackPurplePlaceholder = #colorLiteral(red: 0.2588235294, green: 0.3294117647, blue: 0.7254901961, alpha: 0.5);
     var imapSession: MCOIMAPSession?;
-    var smtpSessiom: MCOSMTPSession?;
+    var smtpSession: MCOSMTPSession?;
     var imapServerHostname = "imap.";
     var smtpServerHostname = "smtp.";
     var mailServerHostname = "mail.";

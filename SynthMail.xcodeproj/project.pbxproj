@@ -13,6 +13,7 @@
 		78AE0B1D29E0F8060029260B /* XCGLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE0B1C29E0F8060029260B /* XCGLogger */; };
 		78AE0B2029E0F8200029260B /* MailCore2 in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE0B1F29E0F8200029260B /* MailCore2 */; };
 		78AE0B2229E197BF0029260B /* MailClientParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE0B2129E197BF0029260B /* MailClientParameters.swift */; };
+		78C082D629E32DF300FDD9AC /* SendMailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C082D529E32DF300FDD9AC /* SendMailVC.swift */; };
 		E24441E1263B0996006953C4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24441DF263B0996006953C4 /* SWRevealViewController.m */; };
 		E24441E6263B2C96006953C4 /* MailboxMessagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24441E5263B2C96006953C4 /* MailboxMessagesVC.swift */; };
 		E24441E8263B2CB1006953C4 /* MailboxFoldersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24441E7263B2CB1006953C4 /* MailboxFoldersVC.swift */; };
@@ -31,6 +32,7 @@
 		785BCAD929E2B702003FC5E4 /* MailClientNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailClientNotifications.swift; sourceTree = "<group>"; };
 		78997D9929E1A747005CFFDD /* CreateAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		78AE0B2129E197BF0029260B /* MailClientParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailClientParameters.swift; sourceTree = "<group>"; };
+		78C082D529E32DF300FDD9AC /* SendMailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMailVC.swift; sourceTree = "<group>"; };
 		E24441DE263B0995006953C4 /* SynthMail-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SynthMail-Bridging-Header.h"; sourceTree = "<group>"; };
 		E24441DF263B0996006953C4 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		E24441E0263B0996006953C4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 		E24441E2263B2C45006953C4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				78C082D529E32DF300FDD9AC /* SendMailVC.swift */,
 				E24441E5263B2C96006953C4 /* MailboxMessagesVC.swift */,
 				E24441E7263B2CB1006953C4 /* MailboxFoldersVC.swift */,
 				E24441EE263B63C0006953C4 /* LoginVC.swift */,
@@ -227,6 +230,7 @@
 				E24441E8263B2CB1006953C4 /* MailboxFoldersVC.swift in Sources */,
 				E2C03E9D26762EAA00A7335C /* RoundedButton.swift in Sources */,
 				E24441E6263B2C96006953C4 /* MailboxMessagesVC.swift in Sources */,
+				78C082D629E32DF300FDD9AC /* SendMailVC.swift in Sources */,
 				E24441EF263B63C0006953C4 /* LoginVC.swift in Sources */,
 				E24441EA263B377D006953C4 /* GradientView.swift in Sources */,
 				E2C2A8A1263AEF74007695C7 /* AppDelegate.swift in Sources */,

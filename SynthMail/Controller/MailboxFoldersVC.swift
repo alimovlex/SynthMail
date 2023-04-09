@@ -22,7 +22,6 @@ class MailboxFoldersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         MAIL_PARAMETERS.imapSession?.username = MAIL_PARAMETERS.mailLogin;
         MAIL_PARAMETERS.imapSession?.password = MAIL_PARAMETERS.mailPassword;
         MAIL_PARAMETERS.imapSession?.connectionType = .TLS;
-        //connect(hostname: MAIL_PARAMETERS.imapSession.hostname, port: MAIL_PARAMETERS.imapSession.port, username: MAIL_PARAMETERS.imapSession.username, password: MAIL_PARAMETERS.imapSession.password, connectionType: MAIL_PARAMETERS.imapSession.connectionType);
         self.listAvailableFolders();
     }
     
@@ -114,6 +113,7 @@ class MailboxFoldersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         MAIL_PARAMETERS.mailFolderNames.removeAll();
         MAIL_PARAMETERS.mailFoldersArray.removeAll();
         MAIL_PARAMETERS.imapSession = nil;
+        MAIL_PARAMETERS.smtpSession = nil;
     }
     
     
