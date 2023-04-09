@@ -79,9 +79,8 @@
                                     <constraint firstItem="JlK-ig-YoT" firstAttribute="top" secondItem="fjj-ay-pp4" secondAttribute="top" constant="21" id="yN5-Sz-KnZ"/>
                                 </constraints>
                             </view>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wv6-i0-FvJ">
-                                <rect key="frame" x="0.0" y="78" width="320" height="402"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wv6-i0-FvJ">
+                                <rect key="frame" x="0.0" y="77" width="320" height="403"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mailCell" rowHeight="70" id="Phl-u5-AJK" customClass="MailCell" customModule="SynthMail" customModuleProvider="target">
@@ -168,8 +167,12 @@
                         <viewLayoutGuide key="safeArea" id="7Cu-vv-Zbw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Wv6-i0-FvJ" firstAttribute="trailing" secondItem="7Cu-vv-Zbw" secondAttribute="trailing" id="C9j-VI-3DQ"/>
                             <constraint firstItem="fjj-ay-pp4" firstAttribute="top" secondItem="7Cu-vv-Zbw" secondAttribute="top" id="Nlx-r1-cWQ"/>
                             <constraint firstItem="fjj-ay-pp4" firstAttribute="leading" secondItem="7Cu-vv-Zbw" secondAttribute="leading" id="Soo-PJ-qvq"/>
+                            <constraint firstItem="Wv6-i0-FvJ" firstAttribute="leading" secondItem="7Cu-vv-Zbw" secondAttribute="leading" id="ZrU-8r-F1J"/>
+                            <constraint firstItem="Wv6-i0-FvJ" firstAttribute="top" secondItem="fjj-ay-pp4" secondAttribute="bottom" id="mMd-fS-oBf"/>
+                            <constraint firstItem="Wv6-i0-FvJ" firstAttribute="bottom" secondItem="7Cu-vv-Zbw" secondAttribute="bottom" id="uGK-ax-NQB"/>
                             <constraint firstItem="fjj-ay-pp4" firstAttribute="trailing" secondItem="7Cu-vv-Zbw" secondAttribute="trailing" id="vaf-hS-6Li"/>
                         </constraints>
                     </view>
@@ -177,6 +180,7 @@
                         <outlet property="mailFolderNameLbl" destination="XHJ-gC-9ue" id="n0v-U9-yXA"/>
                         <outlet property="menuBtn" destination="b4d-GD-8c7" id="bq4-RJ-hfU"/>
                         <outlet property="tableView" destination="Wv6-i0-FvJ" id="5OD-Hh-inQ"/>
+                        <segue destination="Kvk-P6-vAW" kind="presentation" identifier="MessageContentsVC" id="rZ5-ET-Iz7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNI-6O-FYz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -191,9 +195,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0gR-FI-B7J">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0gR-FI-B7J">
                                 <rect key="frame" x="0.0" y="105" width="320" height="294"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="mailboxFolderCell" id="PhU-1k-1OJ" customClass="MailboxFolderCell" customModule="SynthMail" customModuleProvider="target">
@@ -239,8 +242,12 @@
                         <viewLayoutGuide key="safeArea" id="Mvh-x6-6hU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="0gR-FI-B7J" firstAttribute="top" secondItem="sle-Tp-B5P" secondAttribute="bottom" constant="62" id="5dn-XT-zsl"/>
                             <constraint firstItem="n1P-h8-OYc" firstAttribute="leading" secondItem="Mvh-x6-6hU" secondAttribute="leading" constant="16" id="BAW-tD-oSH"/>
+                            <constraint firstItem="0gR-FI-B7J" firstAttribute="leading" secondItem="Mvh-x6-6hU" secondAttribute="leading" id="KSI-36-Evb"/>
                             <constraint firstItem="sle-Tp-B5P" firstAttribute="top" secondItem="Mvh-x6-6hU" secondAttribute="top" constant="20" id="NtW-LY-bju"/>
+                            <constraint firstItem="n1P-h8-OYc" firstAttribute="top" secondItem="0gR-FI-B7J" secondAttribute="bottom" constant="28" id="Pym-bs-EAe"/>
+                            <constraint firstItem="0gR-FI-B7J" firstAttribute="trailing" secondItem="Mvh-x6-6hU" secondAttribute="trailing" id="XXy-3o-VeT"/>
                             <constraint firstItem="sle-Tp-B5P" firstAttribute="leading" secondItem="Mvh-x6-6hU" secondAttribute="leading" constant="16" id="a1U-FE-tL8"/>
                             <constraint firstItem="sle-Tp-B5P" firstAttribute="centerX" secondItem="oeQ-a6-TpX" secondAttribute="centerX" id="awf-dw-P65"/>
                             <constraint firstItem="Mvh-x6-6hU" firstAttribute="bottom" secondItem="n1P-h8-OYc" secondAttribute="bottom" constant="20" id="cgD-BM-twW"/>
@@ -716,55 +723,64 @@
             </objects>
             <point key="canvasLocation" x="3501" y="394"/>
         </scene>
-        <!--Mailbox MessagesVC-->
+        <!--Message ContentsVC-->
         <scene sceneID="B7d-wC-VfA">
             <objects>
-                <viewController id="Kvk-P6-vAW" customClass="MailboxMessagesVC" customModule="SynthMail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Kvk-P6-vAW" customClass="MessageContentsVC" customModule="SynthMail" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F1C-L5-Tfn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCJ-fz-Ne3" customClass="GradientView" customModule="SynthMail" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vic-Ju-415">
-                                        <rect key="frame" x="8" y="29" width="24" height="18"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="3OF-Wk-1jw"/>
-                                            <constraint firstAttribute="width" constant="24" id="Zwq-06-eF2"/>
-                                        </constraints>
-                                        <state key="normal" image="smackBurger"/>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SynthMail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lts-cM-Cif">
-                                        <rect key="frame" x="122.5" y="28" width="75.5" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SynthMail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lts-cM-Cif">
+                                        <rect key="frame" x="122" y="28" width="76" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjH-73-yVo">
-                                        <rect key="frame" x="290" y="21" width="22" height="34"/>
+                                        <rect key="frame" x="279" y="25" width="33" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="33" id="Pdj-nr-NTD"/>
+                                            <constraint firstAttribute="height" constant="27" id="SV4-5q-7eV"/>
+                                        </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <imageReference key="image" image="addChannelButton" symbolScale="large"/>
+                                            <imageReference key="image" image="reply" symbolScale="large"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="7EE-av-gwY" kind="presentation" identifier="SendMailVC" id="c8Q-ZK-EAZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vic-Ju-415">
+                                        <rect key="frame" x="8" y="24" width="28" height="28"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="closeButton"/>
+                                        <connections>
+                                            <action selector="closeButtonPressed:" destination="Kvk-P6-vAW" eventType="touchUpInside" id="4Tc-lN-2C7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                 <constraints>
-                                    <constraint firstItem="Lts-cM-Cif" firstAttribute="centerX" secondItem="yCJ-fz-Ne3" secondAttribute="centerX" id="1rw-Av-Jjx"/>
-                                    <constraint firstItem="Vic-Ju-415" firstAttribute="leading" secondItem="yCJ-fz-Ne3" secondAttribute="leading" constant="8" id="2Ig-xH-t6V"/>
-                                    <constraint firstItem="TjH-73-yVo" firstAttribute="top" secondItem="yCJ-fz-Ne3" secondAttribute="top" constant="21" id="3oO-kJ-4YR"/>
-                                    <constraint firstAttribute="bottom" secondItem="TjH-73-yVo" secondAttribute="bottom" constant="22" id="7EF-F9-5cr"/>
-                                    <constraint firstItem="Lts-cM-Cif" firstAttribute="centerY" secondItem="Vic-Ju-415" secondAttribute="centerY" id="I1p-Qp-ZxR"/>
-                                    <constraint firstAttribute="height" constant="77" id="gK2-oS-J9k"/>
-                                    <constraint firstAttribute="trailing" secondItem="TjH-73-yVo" secondAttribute="trailing" constant="8" id="pbJ-Sq-m6B"/>
-                                    <constraint firstAttribute="bottom" secondItem="Vic-Ju-415" secondAttribute="bottom" constant="30" id="zre-fl-eK3"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vic-Ju-415" secondAttribute="bottom" constant="24" id="Eij-WM-WPM"/>
+                                    <constraint firstAttribute="trailing" secondItem="TjH-73-yVo" secondAttribute="trailing" constant="8" id="MZy-Yg-blf"/>
+                                    <constraint firstAttribute="bottom" secondItem="TjH-73-yVo" secondAttribute="bottom" constant="24" id="ODT-iR-Vii"/>
+                                    <constraint firstItem="TjH-73-yVo" firstAttribute="leading" secondItem="Lts-cM-Cif" secondAttribute="trailing" constant="81" id="Pkt-eu-byX"/>
+                                    <constraint firstItem="Lts-cM-Cif" firstAttribute="centerX" secondItem="yCJ-fz-Ne3" secondAttribute="centerX" id="S02-c5-977"/>
+                                    <constraint firstItem="Lts-cM-Cif" firstAttribute="leading" secondItem="Vic-Ju-415" secondAttribute="trailing" constant="86" id="XZC-z7-Pqz"/>
+                                    <constraint firstItem="Lts-cM-Cif" firstAttribute="top" secondItem="yCJ-fz-Ne3" secondAttribute="top" constant="28" id="bxE-Dh-xFD"/>
+                                    <constraint firstItem="TjH-73-yVo" firstAttribute="top" secondItem="yCJ-fz-Ne3" secondAttribute="top" constant="25" id="ncL-Tr-quG"/>
+                                    <constraint firstItem="Vic-Ju-415" firstAttribute="top" secondItem="yCJ-fz-Ne3" secondAttribute="top" constant="24" id="sHk-Nc-OXr"/>
+                                    <constraint firstItem="Vic-Ju-415" firstAttribute="leading" secondItem="yCJ-fz-Ne3" secondAttribute="leading" constant="8" id="y8S-85-ptZ"/>
                                 </constraints>
                             </view>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggd-06-k7A">
-                                <rect key="frame" x="0.0" y="77" width="320" height="403"/>
+                                <rect key="frame" x="0.0" y="76" width="320" height="384"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES"/>
                             </webView>
@@ -772,18 +788,17 @@
                         <viewLayoutGuide key="safeArea" id="d1E-MR-qeF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="yCJ-fz-Ne3" firstAttribute="top" secondItem="d1E-MR-qeF" secondAttribute="top" id="7gx-FW-CtS"/>
-                            <constraint firstItem="ggd-06-k7A" firstAttribute="leading" secondItem="d1E-MR-qeF" secondAttribute="leading" id="EK7-fI-AoF"/>
-                            <constraint firstItem="yCJ-fz-Ne3" firstAttribute="trailing" secondItem="d1E-MR-qeF" secondAttribute="trailing" id="PEk-GH-8hc"/>
-                            <constraint firstItem="yCJ-fz-Ne3" firstAttribute="leading" secondItem="d1E-MR-qeF" secondAttribute="leading" id="X7D-GE-5VB"/>
-                            <constraint firstItem="ggd-06-k7A" firstAttribute="bottom" secondItem="d1E-MR-qeF" secondAttribute="bottom" id="YAQ-ND-shQ"/>
-                            <constraint firstItem="ggd-06-k7A" firstAttribute="trailing" secondItem="d1E-MR-qeF" secondAttribute="trailing" id="s8B-cE-myq"/>
-                            <constraint firstItem="ggd-06-k7A" firstAttribute="top" secondItem="yCJ-fz-Ne3" secondAttribute="bottom" id="tE1-IT-eyN"/>
+                            <constraint firstItem="yCJ-fz-Ne3" firstAttribute="leading" secondItem="d1E-MR-qeF" secondAttribute="leading" id="6wn-7G-EEH"/>
+                            <constraint firstItem="ggd-06-k7A" firstAttribute="bottom" secondItem="d1E-MR-qeF" secondAttribute="bottom" id="8Ea-bL-OVr"/>
+                            <constraint firstItem="yCJ-fz-Ne3" firstAttribute="centerX" secondItem="F1C-L5-Tfn" secondAttribute="centerX" id="BIg-OJ-EgE"/>
+                            <constraint firstItem="ggd-06-k7A" firstAttribute="top" secondItem="yCJ-fz-Ne3" secondAttribute="bottom" id="L8X-lh-9ec"/>
+                            <constraint firstItem="yCJ-fz-Ne3" firstAttribute="top" secondItem="d1E-MR-qeF" secondAttribute="top" id="XCR-sT-flz"/>
+                            <constraint firstItem="yCJ-fz-Ne3" firstAttribute="leading" secondItem="ggd-06-k7A" secondAttribute="leading" id="Y3t-48-oiw"/>
+                            <constraint firstItem="yCJ-fz-Ne3" firstAttribute="trailing" secondItem="ggd-06-k7A" secondAttribute="trailing" id="e43-e2-0lE"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mailFolderNameLbl" destination="Lts-cM-Cif" id="yzp-Hp-PkB"/>
-                        <outlet property="menuBtn" destination="Vic-Ju-415" id="x9X-5z-FA0"/>
+                        <outlet property="mailView" destination="ggd-06-k7A" id="jJQ-4R-NnB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g17-Rp-Q9H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -800,11 +815,13 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
+        <segue reference="OcH-7R-HHX"/>
         <segue reference="syg-te-neR"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="addChannelButton" width="22" height="22"/>
         <image name="closeButton" width="28" height="28"/>
+        <image name="reply" width="50" height="50"/>
         <image name="smackBurger" width="40" height="40"/>
         <image name="smackLogo" width="48" height="40"/>
         <systemColor name="labelColor">

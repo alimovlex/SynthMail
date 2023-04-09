@@ -46,14 +46,6 @@ class MailboxFoldersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     } else {
                         log.info("All mail folders have been already gathered!!!");
                     }
-                    
-                    
-                    /*
-                    for folder in self.mailFoldersArray where folder.path == self.inboxFolder {
-                        log.info(folder.path)
-                        self.fetchMessageHeadersFromFolder(folder: folder.path, uids: self.uids);
-                    }
-                     */
                 }
                 
             }

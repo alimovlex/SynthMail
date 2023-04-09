@@ -14,6 +14,7 @@ class MailboxMessagesVC: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var tableView: UITableView!
     
     var mailMessagesArray = Array<MCOIMAPMessage>();
+    var currentMailFolder = MCOIMAPFolder();
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -89,6 +90,27 @@ class MailboxMessagesVC: UIViewController, UITableViewDelegate, UITableViewDataS
         //cell.detailTextLabel?.text = message.header.sender.mailbox;
         cell.configureCell(subject: message.header.subject.description, sender: message.header.sender.mailbox, date: message.header.date);
         return cell;
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let message = mailMessagesArray[indexPath.row];
+        currentMailFolder.path = mailFolderNameLbl.text;
+        performSegue(withIdentifier: "MessageContentsVC", sender: message.uid);
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        log.info(segue.identifier);
+        log.info(sender.debugDescription);
+        log.info(mailFolderNameLbl.text);
+        if segue.identifier == "MessageContentsVC" {
+            if let destination = segue.destination as? MessageContentsVC, let messageId = sender as? UInt32, let imapSession = MAIL_PARAMETERS.imapSession {
+                destination.useImapFetchContent(session: imapSession, folder: currentMailFolder, uidToFetch: messageId);
+            } else {
+                log.warning("The UI sender with messageId is nil or Imap session is nil.");
+                self.displayErrorMessage(error: "The UI sender with messageId is nil or Imap session is nil.");
+            }
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
