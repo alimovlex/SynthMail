@@ -1,10 +1,7 @@
-//
-//  CreateAccountVC.swift
-//  Smack
-//
-//  Created by robot on 4/30/21.
-//  Copyright © 2021 robot. All rights reserved.
-//
+/*
+ * Copyright (C) 2023 Recompile.me.
+ * All rights reserved.
+ */
 
 import UIKit
 
@@ -40,9 +37,9 @@ class CreateAccountVC: UIViewController, UITextFieldDelegate {
         emailTxt.delegate = self;
         passTxt.delegate = self;
         
-        usernameTxt.attributedPlaceholder = NSAttributedString(string: "username", attributes: [NSAttributedString.Key.foregroundColor: smackPurplePlaceholder]);
-        emailTxt.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor: smackPurplePlaceholder]);
-        passTxt.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: smackPurplePlaceholder]);
+        usernameTxt.attributedPlaceholder = NSAttributedString(string: "username", attributes: [NSAttributedString.Key.foregroundColor: MAIL_PARAMETERS.smackPurplePlaceholder]);
+        emailTxt.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor: MAIL_PARAMETERS.smackPurplePlaceholder]);
+        passTxt.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: MAIL_PARAMETERS.smackPurplePlaceholder]);
         
     }
     

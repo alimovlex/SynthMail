@@ -4,6 +4,7 @@
  */
 
 import UIKit
+import MailCore
 
 class LoginVC: UIViewController, UITextFieldDelegate {
     
@@ -13,8 +14,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTxt: UITextField!;
     @IBOutlet weak var spinner: UIActivityIndicatorView!;
     @IBOutlet weak var errorLabel: UILabel!;
-    
-    private var shouldPerformSegue = Bool();
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -56,29 +55,55 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             log.error("ERROR!!! FALSE CREDENTIALS PROVIDED!!!");
             errorLabel.isHidden = false;
             errorLabel.text = "Unable to connect to the mail server with credentials provided.";
-            shouldPerformSegue = false;
         } else {
-            mailLogin = emailAddress;
-            mailPassword = password;
-            let mailServerDomain = emailAddress.components(separatedBy: "@")[1];
-            log.info(mailServerDomain);
-            if mailServerHostname.contains(mailServerDomain) {
-                log.info("The mailer hostname already exists!!!");
-            } else {
-                mailServerHostname.append(mailServerDomain);
-            }
-            log.info(mailServerHostname);
+            setupImapSession(emailAddress: emailAddress, password: password);
             spinner.isHidden = false;
             spinner.startAnimating();
-            shouldPerformSegue = true;
+            log.info(emailAddress);
+            log.info(password);
+            connect();
+        }
+    }
+    
+    func setupImapSession(emailAddress: String, password: String) {
+        
+        MAIL_PARAMETERS.mailLogin = emailAddress;
+        MAIL_PARAMETERS.mailPassword = password;
+        let mailServerDomain = emailAddress.components(separatedBy: "@")[1];
+        log.info(mailServerDomain);
+        if MAIL_PARAMETERS.mailServerHostname.contains(mailServerDomain) {
+            log.info("The mailer hostname already exists!!!");
+        } else {
+            MAIL_PARAMETERS.mailServerHostname.append(mailServerDomain);
+        }
+        log.info(MAIL_PARAMETERS.mailServerHostname);
+        
+        MAIL_PARAMETERS.imapSession.hostname = MAIL_PARAMETERS.mailServerHostname;
+        MAIL_PARAMETERS.imapSession.port = UInt32(MAIL_PARAMETERS.imapPort); //UInt32(imapPort);
+        MAIL_PARAMETERS.imapSession.username = MAIL_PARAMETERS.mailLogin;
+        MAIL_PARAMETERS.imapSession.password = MAIL_PARAMETERS.mailPassword;
+        MAIL_PARAMETERS.imapSession.connectionType = .TLS;
+    }
+    
+    func connect() {
+        
+        if let accountCheck = MAIL_PARAMETERS.imapSession.checkAccountOperation() {
+            accountCheck.start { err in
+                if let error = err {
+                    log.error(error.localizedDescription);
+                    self.displayErrorMessage(error: error.localizedDescription);
+                    self.spinner.isHidden = true;
+                    self.spinner.stopAnimating();
+                } else {
+                    log.info("Successful IMAP connection!");
+                    self.spinner.isHidden = true;
+                    self.spinner.stopAnimating();
+                    self.performSegue(withIdentifier: "MessagesAndFoldersVC", sender: nil);
+                }
+            }
         }
         
     }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        return shouldPerformSegue;
-    }
-    
     
     func displayErrorMessage(error: String) {
         let error = UIAlertController(title: "Error fetching messages from the mail server.", message: error, preferredStyle: .alert)
@@ -94,8 +119,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         emailTxt.delegate = self;
         passwordTxt.delegate = self;
         
-        emailTxt.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor: smackPurplePlaceholder]);
-        passwordTxt.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: smackPurplePlaceholder]);
+        emailTxt.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor: MAIL_PARAMETERS.smackPurplePlaceholder]);
+        passwordTxt.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: MAIL_PARAMETERS.smackPurplePlaceholder]);
     }
     
     //hiding the keyboard on return

@@ -9,44 +9,25 @@ import MailCore
 class MailboxFoldersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!;
-    
-    var mailFoldersArray = Array<MCOIMAPFolder>();
-    var mailFolderNames = Array<String>();
+    @IBOutlet weak var accountNameLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad();
         tableView.delegate = self;
         tableView.dataSource = self;
         self.revealViewController().rearViewRevealWidth = self.view.frame.size.width - 60;
-
-        imapSession.hostname = mailServerHostname;
-        imapSession.port = UInt32(imapPort); //UInt32(imapPort);
-        imapSession.username = mailLogin;
-        imapSession.password = mailPassword;
-        imapSession.connectionType = .TLS;
-        connect(hostname: imapSession.hostname, port: imapSession.port, username: imapSession.username, password: imapSession.password, connectionType: imapSession.connectionType);
-        
-    }
-    
-    func connect(hostname: String, port: UInt32, username: String, password: String, connectionType: MCOConnectionType) {
-        
-        if let accountCheck = imapSession.checkAccountOperation() {
-            accountCheck.start { err in
-                if let error = err {
-                    log.error(error.localizedDescription);
-                    self.dismiss(animated: true) {
-                        self.displayErrorMessage(error: error.localizedDescription);
-                    }
-                } else {
-                    log.info("Successful IMAP connection!");
-                    self.listAvailableFolders();
-                }
-            }
-        }
+        accountNameLbl.text = MAIL_PARAMETERS.mailLogin;
+        MAIL_PARAMETERS.imapSession.hostname = MAIL_PARAMETERS.mailServerHostname;
+        MAIL_PARAMETERS.imapSession.port = UInt32(MAIL_PARAMETERS.imapPort); //UInt32(imapPort);
+        MAIL_PARAMETERS.imapSession.username = MAIL_PARAMETERS.mailLogin;
+        MAIL_PARAMETERS.imapSession.password = MAIL_PARAMETERS.mailPassword;
+        MAIL_PARAMETERS.imapSession.connectionType = .TLS;
+        //connect(hostname: MAIL_PARAMETERS.imapSession.hostname, port: MAIL_PARAMETERS.imapSession.port, username: MAIL_PARAMETERS.imapSession.username, password: MAIL_PARAMETERS.imapSession.password, connectionType: MAIL_PARAMETERS.imapSession.connectionType);
+        self.listAvailableFolders();
     }
     
     func listAvailableFolders() {
-        if let fetchFoldersOperation = imapSession.fetchAllFoldersOperation() {
+        if let fetchFoldersOperation = MAIL_PARAMETERS.imapSession.fetchAllFoldersOperation() {
             fetchFoldersOperation.start { [self] err, folderList in
                 if let error = err {
                     log.error(error.localizedDescription);
@@ -55,12 +36,19 @@ class MailboxFoldersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
                 if let folders = folderList {
                     log.info("Listed all IMAP Folders: \(folders.debugDescription)");
-                    mailFoldersArray = folders;
-                    for folderName in mailFoldersArray {
-                        mailFolderNames.append(folderName.path);
+                    MAIL_PARAMETERS.mailFoldersArray = folders;
+                    
+                    if MAIL_PARAMETERS.mailFolderNames.isEmpty {
+                        for folderName in MAIL_PARAMETERS.mailFoldersArray {
+                            MAIL_PARAMETERS.mailFolderNames.append(folderName.path);
+                        }
+                        MAIL_PARAMETERS.mailFolderNames.reverse();
+                        tableView.reloadData();
+                    } else {
+                        log.info("All mail folders have been already gathered!!!");
                     }
-                    mailFolderNames.reverse();
-                    tableView.reloadData();
+                    
+                    
                     /*
                     for folder in self.mailFoldersArray where folder.path == self.inboxFolder {
                         log.info(folder.path)
@@ -83,12 +71,12 @@ class MailboxFoldersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if mailFoldersArray.isEmpty {
+        if MAIL_PARAMETERS.mailFoldersArray.isEmpty {
             log.warning("There are no mail folders found on the server!!!");
             return UITableViewCell();
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "mailboxFolderCell", for: indexPath) as? MailboxFolderCell;
-            let mailFolder = mailFolderNames[indexPath.row];
+            let mailFolder = MAIL_PARAMETERS.mailFolderNames[indexPath.row];
             cell?.configureCell(folderName: mailFolder);
             return cell ?? UITableViewCell();
         }
@@ -100,12 +88,22 @@ class MailboxFoldersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mailFolderNames.count;
+        return MAIL_PARAMETERS.mailFolderNames.count;
         //return MessageService.instance.channels.count;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let mailFolder = MAIL_PARAMETERS.mailFolderNames[indexPath.row];
+        log.info(mailFolder);
+        NotificationCenter.default.post(name: .didUserChooseMailFolder, object: mailFolder);
     }
+    
+    @IBAction func logoutBtnPressed(_ sender: Any) {
+        MAIL_PARAMETERS.mailLogin = String();
+        MAIL_PARAMETERS.mailPassword = String();
+        
+        dismiss(animated: true, completion: nil);
+    }
+    
     
 }

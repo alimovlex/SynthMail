@@ -7,6 +7,7 @@ import UIKit
 import XCGLogger
 
 let log = XCGLogger.default;
+var MAIL_PARAMETERS = MailClientParameters();
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
