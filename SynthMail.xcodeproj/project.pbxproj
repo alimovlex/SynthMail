@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		785BCAD229E1E5B2003FC5E4 /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BCAD129E1E5B2003FC5E4 /* GoalCell.swift */; };
+		78997D9A29E1A747005CFFDD /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78997D9929E1A747005CFFDD /* CreateAccountVC.swift */; };
 		78AE0B1D29E0F8060029260B /* XCGLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE0B1C29E0F8060029260B /* XCGLogger */; };
 		78AE0B2029E0F8200029260B /* MailCore2 in Frameworks */ = {isa = PBXBuildFile; productRef = 78AE0B1F29E0F8200029260B /* MailCore2 */; };
+		78AE0B2229E197BF0029260B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AE0B2129E197BF0029260B /* Constants.swift */; };
 		E24441E1263B0996006953C4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24441DF263B0996006953C4 /* SWRevealViewController.m */; };
-		E24441E6263B2C96006953C4 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24441E5263B2C96006953C4 /* ChatVC.swift */; };
-		E24441E8263B2CB1006953C4 /* ChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24441E7263B2CB1006953C4 /* ChannelVC.swift */; };
+		E24441E6263B2C96006953C4 /* MailboxMessagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24441E5263B2C96006953C4 /* MailboxMessagesVC.swift */; };
+		E24441E8263B2CB1006953C4 /* MailboxFoldersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24441E7263B2CB1006953C4 /* MailboxFoldersVC.swift */; };
 		E24441EA263B377D006953C4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24441E9263B377D006953C4 /* GradientView.swift */; };
 		E24441EF263B63C0006953C4 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24441EE263B63C0006953C4 /* LoginVC.swift */; };
 		E291C930269A969F0064471B /* MailboxFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291C92F269A969F0064471B /* MailboxFolderCell.swift */; };
@@ -23,11 +26,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		785BCAD129E1E5B2003FC5E4 /* GoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
+		78997D9929E1A747005CFFDD /* CreateAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
+		78AE0B2129E197BF0029260B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E24441DE263B0995006953C4 /* SynthMail-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SynthMail-Bridging-Header.h"; sourceTree = "<group>"; };
 		E24441DF263B0996006953C4 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		E24441E0263B0996006953C4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		E24441E5263B2C96006953C4 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
-		E24441E7263B2CB1006953C4 /* ChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelVC.swift; sourceTree = "<group>"; };
+		E24441E5263B2C96006953C4 /* MailboxMessagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxMessagesVC.swift; sourceTree = "<group>"; };
+		E24441E7263B2CB1006953C4 /* MailboxFoldersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxFoldersVC.swift; sourceTree = "<group>"; };
 		E24441E9263B377D006953C4 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		E24441EE263B63C0006953C4 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		E291C92F269A969F0064471B /* MailboxFolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxFolderCell.swift; sourceTree = "<group>"; };
@@ -70,22 +76,24 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E24441E2263B2C45006953C4 /* Controller */ = {
+		E24441E2263B2C45006953C4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E24441E5263B2C96006953C4 /* ChatVC.swift */,
-				E24441E7263B2CB1006953C4 /* ChannelVC.swift */,
-				E24441EE263B63C0006953C4 /* LoginVC.swift */,
 			);
-			path = Controller;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		E24441E3263B2C50006953C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				785BCAD129E1E5B2003FC5E4 /* GoalCell.swift */,
 				E24441E9263B377D006953C4 /* GradientView.swift */,
 				E2C03E9C26762EAA00A7335C /* RoundedButton.swift */,
 				E291C92F269A969F0064471B /* MailboxFolderCell.swift */,
+				E24441E5263B2C96006953C4 /* MailboxMessagesVC.swift */,
+				E24441E7263B2CB1006953C4 /* MailboxFoldersVC.swift */,
+				E24441EE263B63C0006953C4 /* LoginVC.swift */,
+				78997D9929E1A747005CFFDD /* CreateAccountVC.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -93,6 +101,7 @@
 		E24441E4263B2C59006953C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				78AE0B2129E197BF0029260B /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -119,7 +128,7 @@
 			children = (
 				E24441E4263B2C59006953C4 /* Model */,
 				E24441E3263B2C50006953C4 /* View */,
-				E24441E2263B2C45006953C4 /* Controller */,
+				E24441E2263B2C45006953C4 /* ViewModel */,
 				E24441DD263B095A006953C4 /* Supporting Files */,
 				E2C2A8A0263AEF74007695C7 /* AppDelegate.swift */,
 				E2C2A8A6263AEF74007695C7 /* Main.storyboard */,
@@ -211,13 +220,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E291C930269A969F0064471B /* MailboxFolderCell.swift in Sources */,
-				E24441E8263B2CB1006953C4 /* ChannelVC.swift in Sources */,
+				785BCAD229E1E5B2003FC5E4 /* GoalCell.swift in Sources */,
+				E24441E8263B2CB1006953C4 /* MailboxFoldersVC.swift in Sources */,
 				E2C03E9D26762EAA00A7335C /* RoundedButton.swift in Sources */,
-				E24441E6263B2C96006953C4 /* ChatVC.swift in Sources */,
+				E24441E6263B2C96006953C4 /* MailboxMessagesVC.swift in Sources */,
 				E24441EF263B63C0006953C4 /* LoginVC.swift in Sources */,
 				E24441EA263B377D006953C4 /* GradientView.swift in Sources */,
 				E2C2A8A1263AEF74007695C7 /* AppDelegate.swift in Sources */,
 				E24441E1263B0996006953C4 /* SWRevealViewController.m in Sources */,
+				78997D9A29E1A747005CFFDD /* CreateAccountVC.swift in Sources */,
+				78AE0B2229E197BF0029260B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

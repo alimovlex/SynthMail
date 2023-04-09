@@ -8,8 +8,7 @@ import UIKit
 class MailboxFolderCell: UITableViewCell {
 
     // Outlets
-    @IBOutlet weak var channelName: UILabel!;
-    
+    @IBOutlet weak var mailFolderName: UILabel!;
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,10 +23,9 @@ class MailboxFolderCell: UITableViewCell {
             self.layer.backgroundColor = UIColor.clear.cgColor;
         }
     }
-    /*
-    func configureCell(channel: Channel) {
-        let title = channel.channelTitle ?? "";
-        channelName.text = "#\(title)";
+    
+    func configureCell(folderName: String) {
+        mailFolderName.text = folderName;
     }
-     */
+     
 }

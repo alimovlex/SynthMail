@@ -4,13 +4,17 @@
  */
 
 import UIKit
+import MailCore
 
-class ChatVC: UIViewController {
+class MailboxMessagesVC: UIViewController {
 
     //Outlets
-    
     @IBOutlet weak var menuBtn: UIButton!;
     @IBOutlet weak var channelNameLbl: UILabel!;
+    
+    var mailMessagesArray = Array<MCOIMAPMessage>();
+    let session = MCOIMAPSession();
+    var mailFoldersArray = Array<MCOIMAPFolder>();
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -19,6 +23,5 @@ class ChatVC: UIViewController {
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer());
         
     }
-    
 
 }
