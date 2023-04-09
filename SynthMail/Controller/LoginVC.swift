@@ -23,7 +23,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     @IBAction func loginPressed(_ sender: Any) {
         var emailAddress = String();
         var password = String();
-        
+        MAIL_PARAMETERS.imapSession = MCOIMAPSession();
         if let email = emailTxt.text {
             if email.isEmpty {
                 emailTxt.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor:
@@ -78,16 +78,16 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         }
         log.info(MAIL_PARAMETERS.mailServerHostname);
         
-        MAIL_PARAMETERS.imapSession.hostname = MAIL_PARAMETERS.mailServerHostname;
-        MAIL_PARAMETERS.imapSession.port = UInt32(MAIL_PARAMETERS.imapPort); //UInt32(imapPort);
-        MAIL_PARAMETERS.imapSession.username = MAIL_PARAMETERS.mailLogin;
-        MAIL_PARAMETERS.imapSession.password = MAIL_PARAMETERS.mailPassword;
-        MAIL_PARAMETERS.imapSession.connectionType = .TLS;
+        MAIL_PARAMETERS.imapSession?.hostname = MAIL_PARAMETERS.mailServerHostname;
+        MAIL_PARAMETERS.imapSession?.port = UInt32(MAIL_PARAMETERS.imapPort); //UInt32(imapPort);
+        MAIL_PARAMETERS.imapSession?.username = MAIL_PARAMETERS.mailLogin;
+        MAIL_PARAMETERS.imapSession?.password = MAIL_PARAMETERS.mailPassword;
+        MAIL_PARAMETERS.imapSession?.connectionType = .TLS;
     }
     
     func connect() {
         
-        if let accountCheck = MAIL_PARAMETERS.imapSession.checkAccountOperation() {
+        if let accountCheck = MAIL_PARAMETERS.imapSession?.checkAccountOperation() {
             accountCheck.start { err in
                 if let error = err {
                     log.error(error.localizedDescription);

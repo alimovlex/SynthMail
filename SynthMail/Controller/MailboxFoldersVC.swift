@@ -17,17 +17,17 @@ class MailboxFoldersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView.dataSource = self;
         self.revealViewController().rearViewRevealWidth = self.view.frame.size.width - 60;
         accountNameLbl.text = MAIL_PARAMETERS.mailLogin;
-        MAIL_PARAMETERS.imapSession.hostname = MAIL_PARAMETERS.mailServerHostname;
-        MAIL_PARAMETERS.imapSession.port = UInt32(MAIL_PARAMETERS.imapPort); //UInt32(imapPort);
-        MAIL_PARAMETERS.imapSession.username = MAIL_PARAMETERS.mailLogin;
-        MAIL_PARAMETERS.imapSession.password = MAIL_PARAMETERS.mailPassword;
-        MAIL_PARAMETERS.imapSession.connectionType = .TLS;
+        MAIL_PARAMETERS.imapSession?.hostname = MAIL_PARAMETERS.mailServerHostname;
+        MAIL_PARAMETERS.imapSession?.port = UInt32(MAIL_PARAMETERS.imapPort); //UInt32(imapPort);
+        MAIL_PARAMETERS.imapSession?.username = MAIL_PARAMETERS.mailLogin;
+        MAIL_PARAMETERS.imapSession?.password = MAIL_PARAMETERS.mailPassword;
+        MAIL_PARAMETERS.imapSession?.connectionType = .TLS;
         //connect(hostname: MAIL_PARAMETERS.imapSession.hostname, port: MAIL_PARAMETERS.imapSession.port, username: MAIL_PARAMETERS.imapSession.username, password: MAIL_PARAMETERS.imapSession.password, connectionType: MAIL_PARAMETERS.imapSession.connectionType);
         self.listAvailableFolders();
     }
     
     func listAvailableFolders() {
-        if let fetchFoldersOperation = MAIL_PARAMETERS.imapSession.fetchAllFoldersOperation() {
+        if let fetchFoldersOperation = MAIL_PARAMETERS.imapSession?.fetchAllFoldersOperation() {
             fetchFoldersOperation.start { [self] err, folderList in
                 if let error = err {
                     log.error(error.localizedDescription);
@@ -99,10 +99,21 @@ class MailboxFoldersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
-        MAIL_PARAMETERS.mailLogin = String();
-        MAIL_PARAMETERS.mailPassword = String();
-        
-        dismiss(animated: true, completion: nil);
+
+        let logout = MAIL_PARAMETERS.imapSession?.disconnectOperation();
+            logout?.start({ (error) in
+                if let error = error {
+                    log.error(error.localizedDescription);
+                    self.displayErrorMessage(error: error.localizedDescription);
+                } else {
+                    log.info("logout succeeded!");
+                    
+                    self.dismiss(animated: true, completion: nil);
+                }
+            })
+        MAIL_PARAMETERS.mailFolderNames.removeAll();
+        MAIL_PARAMETERS.mailFoldersArray.removeAll();
+        MAIL_PARAMETERS.imapSession = nil;
     }
     
     

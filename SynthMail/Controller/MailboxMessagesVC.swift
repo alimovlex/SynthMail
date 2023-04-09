@@ -44,7 +44,7 @@ class MailboxMessagesVC: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func fetchMessageHeadersFromFolder(folder: String, uids: MCOIndexSet?) {
         
-        if let fetchOperation = MAIL_PARAMETERS.imapSession.fetchMessagesOperation(withFolder: folder, requestKind: .headers, uids: uids) {
+        if let fetchOperation = MAIL_PARAMETERS.imapSession?.fetchMessagesOperation(withFolder: folder, requestKind: .headers, uids: uids) {
             fetchOperation.start { err, fetchedMessages, vanishedMessages in
                 if let error = err {
                     log.error("Error downloading message headers: \(error.localizedDescription)");
