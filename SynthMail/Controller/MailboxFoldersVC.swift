@@ -98,8 +98,10 @@ class MailboxFoldersVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     self.displayErrorMessage(error: error.localizedDescription);
                 } else {
                     log.info("logout succeeded!");
-                    
-                    self.dismiss(animated: true, completion: nil);
+                    self.dismiss(animated: true) {
+                        userDefaults.removeObject(forKey: "userEmail");
+                        userDefaults.removeObject(forKey: "userPassword");
+                    };
                 }
             })
         MAIL_PARAMETERS.mailFolderNames.removeAll();

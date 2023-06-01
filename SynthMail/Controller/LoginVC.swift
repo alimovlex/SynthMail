@@ -9,11 +9,13 @@ import MailCore
 class LoginVC: UIViewController, UITextFieldDelegate {
     
     // Outlets
-    
     @IBOutlet weak var emailTxt: UITextField!;
     @IBOutlet weak var passwordTxt: UITextField!;
     @IBOutlet weak var spinner: UIActivityIndicatorView!;
     @IBOutlet weak var errorLabel: UILabel!;
+    
+    var emailAddress = String();
+    var password = String();
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -21,18 +23,15 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-        var emailAddress = String();
-        var password = String();
         MAIL_PARAMETERS.imapSession = MCOIMAPSession();
         if let email = emailTxt.text {
             if email.isEmpty {
                 emailTxt.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor:
-                                                                                                    UIColor.red]);
+                                                                                                UIColor.red]);
             } else {
                 emailAddress = email;
             }
         } else {
-            
             emailTxt.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor:
                                                                                                 UIColor.red]);
         }
@@ -48,8 +47,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             passwordTxt.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor:
                                                                                                         UIColor.red]);
         }
-        log.info(emailAddress.isEmpty);
-        log.info(password.isEmpty);
         
         if emailAddress.isEmpty || password.isEmpty {
             log.error("ERROR!!! FALSE CREDENTIALS PROVIDED!!!");
@@ -59,8 +56,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             setupImapSession(emailAddress: emailAddress, password: password);
             spinner.isHidden = false;
             spinner.startAnimating();
-            log.info(emailAddress);
-            log.info(password);
             connect();
         }
     }
@@ -98,11 +93,17 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     log.info("Successful IMAP connection!");
                     self.spinner.isHidden = true;
                     self.spinner.stopAnimating();
+                    
                     self.performSegue(withIdentifier: "MessagesAndFoldersVC", sender: nil);
                 }
             }
         }
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        userDefaults.set(self.emailAddress, forKey: "userEmail");
+        userDefaults.set(self.password, forKey: "userPassword");
     }
     
     func displayErrorMessage(error: String) {
@@ -119,8 +120,15 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         emailTxt.delegate = self;
         passwordTxt.delegate = self;
         
-        emailTxt.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor: MAIL_PARAMETERS.smackPurplePlaceholder]);
-        passwordTxt.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: MAIL_PARAMETERS.smackPurplePlaceholder]);
+        if let username = UserDefaults.standard.string(forKey: "userEmail"), let password = UserDefaults.standard.string(forKey: "userPassword"), !username.isEmpty, !password.isEmpty {
+            emailTxt.text = UserDefaults.standard.string(forKey: "userEmail");
+            passwordTxt.text = UserDefaults.standard.string(forKey: "userPassword");
+            loginPressed(self);
+        } else {
+            emailTxt.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor: MAIL_PARAMETERS.smackPurplePlaceholder]);
+            passwordTxt.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: MAIL_PARAMETERS.smackPurplePlaceholder]);
+        }
+        
     }
     
     //hiding the keyboard on return

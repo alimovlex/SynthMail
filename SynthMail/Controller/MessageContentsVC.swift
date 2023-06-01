@@ -25,8 +25,8 @@ class MessageContentsVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SendMailVC" {
             if let destination = segue.destination as? SendMailVC {
-                destination.toEmail = fromEmail;
-                destination.fromEmail = toEmail;
+                destination.toEmail = toEmail;
+                destination.fromEmail = fromEmail;
                 destination.emailSubject = emailSubject;
                 destination.ccEmail = ccEmail;
                 destination.bccEmail = bccEmail;
